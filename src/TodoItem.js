@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react';
+
+import {Context} from './context';
 
 const TodoItem = ({title, id, completed}) => {
-  const [checked, setChecked] = useState(completed);
+
+  const {dispatch} = useContext(Context);
 
   const classes = ['todo'];
 
-  if(checked) {
+  if(completed) {
     classes.push('completed');
   }
 
@@ -14,13 +17,20 @@ const TodoItem = ({title, id, completed}) => {
       <label>
         <input
           type = "checkbox"
-          checked = {checked}
-          onChange = {() => setChecked(checked => !checked)}
+          checked = {completed}
+          onChange = {() => dispatch({
+            type: 'toggle',
+            payload: id
+          })}
         />
         <span>{title}</span>
 
         <i
-          className="material-icons red-text"
+          className = "material-icons red-text"
+          onClick = {() => dispatch({
+            type: 'remove',
+            payload: id
+          })}
         >
           close
         </i>

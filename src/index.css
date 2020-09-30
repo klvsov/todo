@@ -11,6 +11,7 @@ body{
 
 .todo span{
   color: darkcyan;
+  font-size: 1.2rem!important;
 }
 
 .todo.completed span{
@@ -31,4 +32,3 @@ body{
 .todo i{
   z-index: 2;
 }
-
